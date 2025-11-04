@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import portrait from "./assets/portrait.png";
 import "./Home.css";
 
 const Home = () => {
@@ -64,7 +65,7 @@ const Home = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.4 }}
           >
-            <img src="src/assets/portrait.png" alt="Jobayer portrait" />
+            <img src={portrait} alt="Jobayer portrait" />
           </motion.div>
         </motion.div>
       </section>
