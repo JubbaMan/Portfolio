@@ -1,6 +1,5 @@
 import React from "react";
 import { motion } from "framer-motion";
-import portrait from "./assets/portrait.png";
 import "./Home.css";
 
 const Home = () => {
