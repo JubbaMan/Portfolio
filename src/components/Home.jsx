@@ -59,14 +59,7 @@ const Home = () => {
             </div>
           </motion.div>
 
-          <motion.div
-            className="hero-img"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.4 }}
-          >
-            <img src={portrait} alt="Jobayer portrait" />
-          </motion.div>
+         
         </motion.div>
       </section>
 
