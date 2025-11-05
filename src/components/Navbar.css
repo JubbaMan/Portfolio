@@ -5,26 +5,28 @@ nav.navbar {
   align-items: center;
   padding: 0 30px;
   height: 70px;
-  background: rgba(20, 20, 30, 0.95);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+  background: rgba(20, 20, 30, 0.6);
+  backdrop-filter: blur(15px) saturate(150%);
+  -webkit-backdrop-filter: blur(15px) saturate(150%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
   position: sticky;
   top: 0;
   z-index: 1000;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  transition: background 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .navbar:hover {
-  background: rgba(25, 25, 35, 0.95);
-  box-shadow: 0 8px 35px rgba(0,0,0,0.7);
+  background: rgba(30, 30, 45, 0.7);
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.6);
 }
 
-/* Logo */
+/* ===== Logo ===== */
 .logo .Logo {
-  font-size: 2.2rem;
+  font-size: 2rem;
   font-weight: bold;
-  background: linear-gradient(90deg, #4f46e5, #ec4899);
+  background: linear-gradient(90deg, #6366f1, #ec4899);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   cursor: pointer;
@@ -32,27 +34,27 @@ nav.navbar {
 }
 
 .logo:hover .Logo {
-  transform: scale(1.2);
-  text-shadow: 0 0 10px rgba(255,255,255,0.3);
+  transform: scale(1.1);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 }
 
-/* Navigation Links */
+/* ===== Navigation Links ===== */
 .nav-links {
   display: flex;
-  gap: 40px;
+  gap: 35px;
 }
 
 .nav-links li {
   list-style: none;
+  cursor: pointer;
 }
 
 .nav-links a,
 .nav-links .nav-link {
   text-decoration: none;
   font-weight: 600;
-  position: relative;
   color: #ddd;
-  cursor: pointer;
+  position: relative;
   transition: all 0.3s ease;
 }
 
@@ -64,8 +66,8 @@ nav.navbar {
   height: 2px;
   bottom: -4px;
   left: 0;
-  background: linear-gradient(90deg, #4f46e5, #ec4899);
-  transition: 0.3s ease;
+  background: linear-gradient(90deg, #6366f1, #ec4899);
+  transition: width 0.3s ease;
 }
 
 .nav-links a:hover::after,
@@ -81,13 +83,14 @@ nav.navbar {
   transform: scale(1.05);
 }
 
-/* Hamburger menu */
+/* ===== Hamburger Menu ===== */
 .hamburger {
   display: none;
   flex-direction: column;
   cursor: pointer;
   gap: 5px;
-  z-index: 1100;
+  z-index: 1200;
+  transition: transform 0.3s ease;
 }
 
 .hamburger span {
@@ -101,40 +104,77 @@ nav.navbar {
 .hamburger.open span:nth-child(1) {
   transform: rotate(45deg) translate(5px, 5px);
 }
+
 .hamburger.open span:nth-child(2) {
   opacity: 0;
 }
+
 .hamburger.open span:nth-child(3) {
   transform: rotate(-45deg) translate(5px, -5px);
 }
 
-/* Responsive */
+/* ===== Floating Glass Menu (Mobile) ===== */
 @media (max-width: 768px) {
   .hamburger {
     display: flex;
   }
 
-  .nav-links {
-    position: fixed;
-    top: 70px;
-    right: -100%;
-    height: calc(100% - 70px);
-    width: 65%;
-    background: rgba(20,20,35,0.95);
-    backdrop-filter: blur(12px);
+  ul.nav-links {
+    display: none;
+    position: absolute;
+    top: 80px;
+    right: 25px;
     flex-direction: column;
-    gap: 30px;
-    padding: 50px 30px;
-    transition: right 0.4s ease;
-    box-shadow: -4px 0 25px rgba(0,0,0,0.5);
+    gap: 18px;
+    background: rgba(25, 25, 35, 0.7);
+    background-color: rgba(25, 25, 35, 0.7);
+    backdrop-filter: blur(18px) saturate(180%);
+    -webkit-backdrop-filter: blur(18px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 18px;
+    padding: 25px 35px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.45);
+    animation: floatMenu 0.3s ease-out forwards;
   }
 
   .nav-links.open {
-    right: 0;
+    display: flex;
+    position: absolute;
+    top: 80px;
+    right: 25px;
+    flex-direction: column;
+    gap: 18px;
+    background: rgba(25, 25, 35, 0.5);
+    backdrop-filter: blur(18px) saturate(180%);
+    -webkit-backdrop-filter: blur(18px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 18px;
+    padding: 25px 35px 181px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.85);
+    animation: floatMenu 0.3s ease-out forwards;
   }
 
   .nav-links li a,
   .nav-links li .nav-link {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
+    color: #f0f0f0;
+  }
+
+  .nav-links li a:hover,
+  .nav-links li .nav-link:hover {
+    color: #ec4899;
+  }
+}
+
+/* ===== Animation ===== */
+@keyframes floatMenu {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 }

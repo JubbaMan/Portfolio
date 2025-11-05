@@ -1,38 +1,43 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Navbar.css";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
-  // Smooth scroll to section
-  const handleScroll = (id) => {
+  const scrollToSection = (id) => {
     const section = document.getElementById(id);
     if (section) {
-      section.scrollIntoView({ behavior: "smooth", block: "start" });
-      setOpen(false); // close mobile menu
+      section.scrollIntoView({ behavior: "smooth" });
+      setOpen(false);
     }
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 60);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <nav className="navbar">
-      <div className="logo" onClick={() => handleScroll("home")}>
-        <span className="Logo">JOBAYER</span>
+    <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
+      <div className="logo" onClick={() => scrollToSection("home")}>
+        <span className="Logo">J</span>
       </div>
 
       <ul className={`nav-links ${open ? "open" : ""}`}>
-        {["home", "about", "projects", "contact"].map((id, idx) => {
-          const name = ["Home", "About", "Projects", "Contact"][idx];
-          return (
-            <li key={name}>
-              <span
-                className="nav-link"
-                onClick={() => handleScroll(id)}
-              >
-                {name}
-              </span>
-            </li>
-          );
-        })}
+        {["home", "about", "projects", "contact"].map((section) => (
+          <li key={section}>
+            <span
+              className="nav-link"
+              onClick={() => scrollToSection(section)}
+            >
+              {section.charAt(0).toUpperCase() + section.slice(1)}
+            </span>
+          </li>
+        ))}
       </ul>
 
       <div
