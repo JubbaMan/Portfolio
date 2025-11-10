@@ -24,7 +24,7 @@ const Navbar = () => {
   return (
     <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
       <div className="cursor-target logo" onClick={() => scrollToSection("home")}>
-        <span className="Logo">J</span>
+        <span className="Logo">Jobayer</span>
       </div>
 
       <ul className={`nav-links ${open ? "open" : ""}`}>
