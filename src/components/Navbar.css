@@ -46,7 +46,7 @@ nav.navbar {
 
 .nav-links li {
   list-style: none;
-  cursor: pointer;
+  cursor: none;
 }
 
 .nav-links a,

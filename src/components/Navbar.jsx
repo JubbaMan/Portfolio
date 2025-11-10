@@ -23,7 +23,7 @@ const Navbar = () => {
 
   return (
     <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
-      <div className="logo" onClick={() => scrollToSection("home")}>
+      <div className="cursor-target logo" onClick={() => scrollToSection("home")}>
         <span className="Logo">J</span>
       </div>
 
@@ -31,7 +31,7 @@ const Navbar = () => {
         {["home", "about", "projects", "contact"].map((section) => (
           <li key={section}>
             <span
-              className="nav-link"
+              className="cursor-target nav-link"
               onClick={() => scrollToSection(section)}
             >
               {section.charAt(0).toUpperCase() + section.slice(1)}

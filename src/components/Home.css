@@ -97,6 +97,7 @@ body {
   border-radius: 8px;
   font-weight: 500;
   transition: all 0.3s ease;
+  cursor: none;
 }
 
 .btn {
@@ -188,6 +189,7 @@ section p {
   color: #a5b4fc;
   text-decoration: none;
   transition: color 0.3s;
+  cursor: none;
 }
 
 .contact .social-links a:hover {

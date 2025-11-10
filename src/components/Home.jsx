@@ -53,8 +53,8 @@ const Home = () => {
               designs and smooth user experiences.
             </p>
             <div className="hero-buttons">
-              <a href="#projects" className="btn">View My Work</a>
-              <a href="#contact" className="btn-outline">Contact Me</a>
+              <a href="#projects" className="cursor-target btn">View My Work</a>
+              <a href="#contact" className="cursor-target btn-outline">Contact Me</a>
             </div>
           </motion.div>
 
@@ -100,7 +100,7 @@ const Home = () => {
     transition={{ duration: 0.8, delay: 0.6 }}
   >
     <h3>My Tools & Skills:</h3>
-    <div className="tech-list">
+    <div className="cursor-target tech-list">
       {["Adobe Photoshop", "Illustrator", "Figma", "Canva", "HTML", "CSS", "JavaScript", "React"].map((tech, index) => (
         <span key={index}>{tech}</span>
       ))}
@@ -137,7 +137,7 @@ const Home = () => {
             "Canva",
           ].map((skill, index) => (
             <motion.div
-              className="skill-card"
+              className="cursor-target skill-card"
               key={index}
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 300 }}
@@ -160,7 +160,7 @@ const Home = () => {
         <div className="projects-grid">
           {projects.map((project, index) => (
             <motion.div
-              className="project-card"
+              className="cursor-target project-card"
               key={index}
               variants={{
                 hidden: { opacity: 0, y: 50 },
@@ -195,7 +195,7 @@ const Home = () => {
 >
   <h2>Let’s Connect</h2>
   <p>Follow me on my social accounts or reach out directly!</p>
-  <div className="social-links">
+  <div className="cursor-target social-links">
     <a href="https://github.com/JubbaMan" target="_blank" rel="noopener noreferrer">GitHub</a>
     <a href="https://www.instagram.com/j.u.b.b.a_/" target="_blank" rel="noopener noreferrer">Instagram</a>
   </div>
