@@ -97,7 +97,6 @@ body {
   border-radius: 8px;
   font-weight: 500;
   transition: all 0.3s ease;
-  cursor: none;
 }
 
 .btn {
@@ -189,7 +188,6 @@ section p {
   color: #a5b4fc;
   text-decoration: none;
   transition: color 0.3s;
-  cursor: none;
 }
 
 .contact .social-links a:hover {
@@ -423,4 +421,96 @@ footer {
   margin-top: 25px;
   font-size: 1.1rem;
   color: #ccc;
+}
+
+
+/* ===== PROJECT PREVIEW ===== */
+.project-card {
+  background: #1b1b22;
+  padding: 18px;
+  border-radius: 12px;
+  border: 1px solid rgba(99, 102, 241, 0.15);
+  transition: all 0.3s ease;
+}
+
+.project-preview {
+  width: 100%;
+  height: 160px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.project-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.project-card:hover .project-preview img {
+  transform: scale(1.06);
+}
+.project-actions {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.project-card:hover .project-actions {
+  opacity: 1;
+  pointer-events: auto;
+}
+@media (max-width: 768px) {
+  .project-preview {
+    height: 140px;
+  }
+}
+@media (max-width: 768px) {
+  .project-actions {
+    justify-content: center;
+  }
+}
+/* ===== PROJECT ACTION BUTTONS ===== */
+.project-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+
+.project-actions a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 6px 16px;
+  font-size: 0.8rem;
+  font-weight: 500;
+
+  border-radius: 999px;
+  text-decoration: none;
+
+  color: #a5b4fc;
+  background: rgba(99, 102, 241, 0.12);
+  border: 1px solid rgba(99, 102, 241, 0.25);
+
+  transition: all 0.3s ease;
+}
+
+/* Hover effect */
+.project-actions a:hover {
+  background: #4f46e5;
+  color: #ffffff;
+  border-color: #4f46e5;
+  transform: translateY(-2px);
+}
+
+/* Active click */
+.project-actions a:active {
+  transform: scale(0.96);
+}
+
+/* Optional subtle glow on hover */
+.project-card:hover .project-actions a {
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.25);
 }

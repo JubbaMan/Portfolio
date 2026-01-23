@@ -14,12 +14,12 @@ function App() {
   return (
     <Router>
       <Navbar />
-            <TargetCursor 
+            {/* <TargetCursor 
         spinDuration={5}
         hideDefaultCursor={true}
         parallaxOn={true}
       />
-   
+    */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/details" element={<Details />} />

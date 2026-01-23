@@ -29,13 +29,14 @@ nav.navbar {
   background: linear-gradient(90deg, #6366f1, #ec4899);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  cursor: none;
   transition: transform 0.3s ease, text-shadow 0.3s ease;
+  
 }
 
 .logo:hover .Logo {
   transform: scale(1.1);
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  cursor: pointer;
 }
 
 /* ===== Navigation Links ===== */
@@ -46,7 +47,6 @@ nav.navbar {
 
 .nav-links li {
   list-style: none;
-  cursor: none;
 }
 
 .nav-links a,
@@ -81,6 +81,7 @@ nav.navbar {
 .nav-links .nav-link:hover {
   color: #ec4899;
   transform: scale(1.05);
+  cursor: pointer;
 }
 
 /* ===== Hamburger Menu ===== */
