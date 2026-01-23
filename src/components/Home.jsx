@@ -87,7 +87,7 @@ const Home = () => {
       description: "I tried my best to recreate an existing post.",
       tech: ["Illustrator", "Photoshop"],
       preview: "/previews/boombox (5).jpg",
-      files: "/previews/boombox(5).jpg",
+      files: "/previews/boombox (5).jpg",
     },
     {
       title: "Concept Ad for JBL Headphones",
