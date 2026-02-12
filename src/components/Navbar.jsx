@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { HiHome, HiUser, HiCode, HiMail } from "react-icons/hi";
 import "./Navbar.css";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 1024);
 
   const scrollToSection = (id) => {
     const section = document.getElementById(id);
@@ -13,28 +15,63 @@ const Navbar = () => {
     }
   };
 
+  // Detect screen size
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 60);
+    const handleResize = () => {
+      setIsDesktop(window.innerWidth >= 770);
     };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // Detect hero visibility
+  useEffect(() => {
+    const hero = document.getElementById("home");
+    if (!hero) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setScrolled(!entry.isIntersecting);
+      },
+      { threshold: 0.4 }
+    );
+
+    observer.observe(hero);
+
+    return () => observer.disconnect();
+  }, []);
+
+  const navItems = [
+    { id: "home", label: "Home", icon: <HiHome /> },
+    { id: "about", label: "About", icon: <HiUser /> },
+    { id: "projects", label: "Projects", icon: <HiCode /> },
+    { id: "contact", label: "Contact", icon: <HiMail /> },
+  ];
+
+  // Only enable dock mode on desktop
+  const dockMode = scrolled && isDesktop;
+
   return (
-    <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
-      <div className="cursor-target logo" onClick={() => scrollToSection("home")}>
-        <span className="Logo">Jobayer</span>
+    <nav className={`navbar ${dockMode ? "scrolled" : ""}`}>
+      
+      <div
+        className="cursor-target logo"
+        onClick={() => scrollToSection("home")}
+      >
+        <span className="Logo">
+          {dockMode ? "J" : "Jobayer"}
+        </span>
       </div>
 
       <ul className={`nav-links ${open ? "open" : ""}`}>
-        {["home", "about", "projects", "contact"].map((section) => (
-          <li key={section}>
+        {navItems.map((item) => (
+          <li key={item.id}>
             <span
               className="cursor-target nav-link"
-              onClick={() => scrollToSection(section)}
+              onClick={() => scrollToSection(item.id)}
             >
-              {section.charAt(0).toUpperCase() + section.slice(1)}
+              {dockMode ? item.icon : item.label}
             </span>
           </li>
         ))}
@@ -48,6 +85,7 @@ const Navbar = () => {
         <span></span>
         <span></span>
       </div>
+
     </nav>
   );
 };
