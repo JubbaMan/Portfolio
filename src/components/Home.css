@@ -20,8 +20,8 @@ body {
   align-items: center;
   padding: 100px 10%;
   background: linear-gradient(135deg, #0f0f10, #1b1b22);
-  position: relative;
   overflow: hidden;
+  position:relative;
 }
 
 .hero::before {
