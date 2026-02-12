@@ -348,7 +348,7 @@ At the core, my goal is to create work that feels <span className="highlight">th
             GitHub
           </a>
           <a
-            href="https://www.instagram.com/j.u.b.b.a_/"
+            href="https://www.instagram.com/f1_jubba/"
             target="_blank"
             rel="noopener noreferrer"
           >
