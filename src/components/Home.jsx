@@ -11,6 +11,9 @@ const ProjectCard = ({ project, index }) => {
         hidden: { opacity: 0, y: 50 },
         visible: { opacity: 1, y: 0 },
       }}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
       transition={{ duration: 0.6, delay: index * 0.2 }}
       whileHover={{
         scale: 1.03,
@@ -96,68 +99,62 @@ const Home = () => {
       preview: "/previews/Tune (4).png",
       files: "/previews/Tune (4).png",
     },
-   {
+    {
       title: "Cute Bunny Lamp",
       description: "A bunny lamp? I need it rn!!!",
       tech: ["Illustrator", "Photoshop"],
       preview: "/previews/Lamppost (2).jpg",
       files: "/previews/Lamppost (2).jpg",
     },
-    
-   {
+    {
       title: "Cool Laptop Ad",
       description: "First time i tried this type of post idea..",
       tech: ["Illustrator", "Photoshop"],
       preview: "/previews/lappy.jpg",
       files: "/previews/lappy.jpg",
     },
-    
-   {
+    {
       title: "Jeep Car Ad",
       description: "A concept ad for a Jeep car.",
       tech: ["Illustrator", "Photoshop"],
       preview: "/previews/JeepInsta.jpg",
       files: "/previews/JeepInsta.jpg",
     },
-   {
+    {
       title: "Stapler Ad",
       description: "Expect the unexpected, a cool ad for stapler also exists!",
       tech: ["Illustrator", "Photoshop"],
       preview: "/previews/SocialMediaDesign (1).jpg",
       files: "/previews/SocialMediaDesign (1).jpg",
     },
-    
-   {
+    {
       title: "Demo Brand Logo",
       description: "Minimal and modern Logo Design for small brands.",
       tech: ["Illustrator", "Photoshop"],
       preview: "/previews/S (2).png",
       files: "/previews/S (2).png",
     },
-    
-   {
+    {
       title: "Demo Brand Logo (Dark)",
       description: "Minimal and modern Logo Design for small brands, but in dark.",
       tech: ["Illustrator", "Photoshop"],
       preview: "/previews/S (6).png",
       files: "/previews/S (6).png",
     },
-   {
+    {
       title: "School Club Logo",
       description: "Minimal and modern Logo Design for a School Club.",
       tech: ["Illustrator", "Photoshop"],
       preview: "/previews/Motijheel Model IT Club (8).png",
       files: "/previews/Motijheel Model IT Club (8).png",
     },
-    
-   {
+    {
       title: "School Club Logo (Dark)",
       description: "Minimal and modern Logo Design for a School Club, also in dark.",
       tech: ["Illustrator", "Photoshop"],
       preview: "/previews/Motijheel Model IT Club (11).png",
       files: "/previews/Motijheel Model IT Club (11).png",
     },
-    
   ];
 
   return (
@@ -308,12 +305,9 @@ At the core, my goal is to create work that feels <span className="highlight">th
       </motion.section>
 
       {/* ===== PROJECTS SECTION ===== */}
-      <motion.section
+      <section
         className="projects"
         id="projects"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
       >
         <h2>Projects</h2>
 
@@ -326,7 +320,7 @@ At the core, my goal is to create work that feels <span className="highlight">th
             />
           ))}
         </div>
-      </motion.section>
+      </section>
 
       {/* ===== CONTACT SECTION ===== */}
       <motion.section
