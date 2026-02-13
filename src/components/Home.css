@@ -660,3 +660,8 @@ footer {
 .project-card:hover .project-actions a {
   box-shadow: 0 4px 14px rgba(79, 70, 229, 0.25);
 }
+@media (max-width: 768px) {
+  .projects-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+}
