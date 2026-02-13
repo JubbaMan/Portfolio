@@ -613,6 +613,7 @@ footer {
 }
 @media (max-width: 768px) {
   .project-actions {
+    opacity: 1;
     justify-content: center;
   }
 }
@@ -663,5 +664,26 @@ footer {
 @media (max-width: 768px) {
   .projects-grid {
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+}
+@media (max-width: 420px) {
+  .projects {
+    padding: 60px 5%;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .project-preview {
+    height: 120px;
+  }
+
+  .project-actions {
+    justify-content: center;
+  }
+  .hero{
+    padding: 100px 5%;
   }
 }
