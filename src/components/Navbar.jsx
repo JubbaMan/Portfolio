@@ -3,15 +3,13 @@ import { HiHome, HiUser, HiCode, HiMail } from "react-icons/hi";
 import "./Navbar.css";
 
 const Navbar = () => {
-  const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 1024);
+  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 770);
 
   const scrollToSection = (id) => {
     const section = document.getElementById(id);
     if (section) {
       section.scrollIntoView({ behavior: "smooth" });
-      setOpen(false);
     }
   };
 
@@ -60,31 +58,22 @@ const Navbar = () => {
         onClick={() => scrollToSection("home")}
       >
         <span className="Logo">
-          {dockMode ? "J" : "Jobayer"}
+          {!isDesktop || dockMode ? "J" : "Jobayer"}
         </span>
       </div>
 
-      <ul className={`nav-links ${open ? "open" : ""}`}>
+      <ul className="nav-links open">
         {navItems.map((item) => (
           <li key={item.id}>
             <span
               className="cursor-target nav-link"
               onClick={() => scrollToSection(item.id)}
             >
-              {dockMode ? item.icon : item.label}
+              {!isDesktop || dockMode ? item.icon : item.label}
             </span>
           </li>
         ))}
       </ul>
-
-      <div
-        className={`hamburger ${open ? "open" : ""}`}
-        onClick={() => setOpen(!open)}
-      >
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
 
     </nav>
   );
