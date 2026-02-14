@@ -1,6 +1,6 @@
 /* components/CartoonBackground.css */
 
-/* Base container */
+/* Base container - use transform for better performance */
 .cartoon-background {
   position: fixed;
   top: 0;
@@ -10,16 +10,24 @@
   pointer-events: none;
   z-index: 0;
   overflow: hidden;
-  /* Respect reduced motion for accessibility */
-  @media (prefers-reduced-motion: reduce) {
-    * {
-      animation: none !important;
-      transition: none !important;
-    }
+  transform: translateZ(0); /* Force GPU acceleration */
+  backface-visibility: hidden;
+  will-change: transform;
+}
+
+/* Optimized reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .cartoon-background *,
+  .cartoon-background *::before,
+  .cartoon-background *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
   }
 }
 
-/* Light theme overrides */
+/* Light theme - consolidated selectors for better performance */
 .cartoon-background.light .base-gradient {
   background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
 }
@@ -32,10 +40,11 @@
 
 .cartoon-background.light .code-float,
 .cartoon-background.light .bracket-float {
-  opacity: 0.5; /* Slightly more visible in light mode */
+  opacity: 0.5;
+  filter: blur(0.2px); /* Reduced blur for performance */
 }
 
-.cartoon-background.light .terminal-float {
+.cartoon-background.light .terminal-mini {
   background: rgba(240, 240, 250, 0.6);
   border-color: rgba(30, 64, 175, 0.3);
   color: #1e40af;
@@ -49,7 +58,7 @@
   background: radial-gradient(circle at center, rgba(30, 64, 175, 0.1), transparent 80%);
 }
 
-/* Base gradient with animation support */
+/* Base gradient - no animations, static */
 .base-gradient {
   position: absolute;
   top: 0;
@@ -58,9 +67,10 @@
   height: 100%;
   background: linear-gradient(135deg, #0f0f10, #1a1a1a);
   z-index: -1;
+  transform: translateZ(0);
 }
 
-/* Subtle grid overlay */
+/* Subtle grid - optimized with contain */
 .subtle-grid {
   position: absolute;
   top: 0;
@@ -72,53 +82,65 @@
     linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
   background-size: 50px 50px;
   z-index: -1;
+  contain: strict; /* Isolate rendering */
+  transform: translateZ(0);
 }
 
-/* Floating code elements */
+/* Consolidated floating elements - use GPU acceleration */
+.code-float,
+.bracket-float,
+.shape-float,
+.terminal-float {
+  position: absolute;
+  pointer-events: none;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Code elements - simplified */
 .code-float {
   font-family: 'Fira Code', monospace;
   font-weight: 500;
   white-space: nowrap;
-  pointer-events: none;
   z-index: 2;
   opacity: 0.4;
-  filter: blur(0.3px);
-  transition: transform 0.2s ease; /* For hover effects */
+  filter: blur(0.2px); /* Reduced blur */
+  text-rendering: optimizeSpeed;
 }
 
-/* Floating bracket elements */
+/* Bracket elements */
 .bracket-float {
   font-family: 'Fira Code', monospace;
   font-weight: 600;
   white-space: nowrap;
-  pointer-events: none;
   z-index: 3;
   opacity: 0.35;
-  filter: blur(0.3px);
-  transition: transform 0.2s ease; /* For hover effects */
+  filter: blur(0.2px);
 }
 
-/* Floating shape elements (new: circles, triangles, squares) */
+/* Shape elements - simplified */
 .shape-float {
-  pointer-events: none;
   z-index: 1;
   opacity: 0.3;
-  border-radius: 50%; /* Default for circles */
-  filter: blur(0.5px);
+  border-radius: 50%;
+  filter: blur(0.3px);
+  contain: layout style paint;
 }
 
 .shape-float.triangle {
   clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
   border-radius: 0;
+  background: currentColor; /* Use currentColor for better performance */
 }
 
 .shape-float.square {
   border-radius: 0;
 }
 
-/* Terminal elements */
+/* Terminal elements - optimized */
 .terminal-float {
-  pointer-events: none;
   z-index: 4;
 }
 
@@ -130,10 +152,12 @@
   font-family: 'Fira Code', monospace;
   font-size: 12px;
   color: #a5b4fc;
-  backdrop-filter: blur(3px);
+  backdrop-filter: blur(2px); /* Reduced blur */
   white-space: nowrap;
   opacity: 0.45;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transform: translateZ(0);
+  will-change: transform, opacity;
 }
 
 .terminal-prompt {
@@ -142,7 +166,7 @@
   font-weight: bold;
 }
 
-/* Enhanced stars */
+/* Stars - use CSS variables for better performance */
 .stars-subtle {
   position: absolute;
   top: 0;
@@ -150,6 +174,7 @@
   width: 100%;
   height: 100%;
   z-index: 1;
+  contain: strict;
 }
 
 .star-mini {
@@ -159,53 +184,66 @@
   background: #ffffff;
   border-radius: 50%;
   opacity: 0.1;
-  filter: blur(0.5px);
+  filter: blur(0.3px);
+  transform: translateZ(0);
 }
 
-/* Enhanced mouse glow with pulse */
+/* Mouse glow - optimized */
 .mouse-glow {
   position: fixed;
-  width: 400px; /* Larger for better visibility */
+  width: 400px;
   height: 400px;
   border-radius: 50%;
   background: radial-gradient(circle at center, rgba(79, 70, 229, 0.1), transparent 80%);
   pointer-events: none;
   z-index: 5;
-  filter: blur(40px);
-  transform: translate(-50%, -50%);
+  filter: blur(30px); /* Reduced blur */
+  transform: translate(-50%, -50%) translateZ(0);
   opacity: 0.1;
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
-/* Responsive adjustments */
+/* Mobile optimizations - consolidated */
 @media (max-width: 768px) {
   .code-float,
   .bracket-float {
     font-size: 20px !important;
-    opacity: 0.3; /* Reduce opacity on mobile for performance */
+    opacity: 0.25; /* Further reduced for performance */
+    filter: blur(0.1px);
   }
   
   .shape-float {
     width: 25px !important;
     height: 25px !important;
+    filter: blur(0.2px);
   }
   
   .terminal-mini {
     font-size: 10px;
     padding: 4px 8px;
+    backdrop-filter: blur(1px);
   }
   
   .mouse-glow {
     width: 200px;
     height: 200px;
     filter: blur(20px);
+    opacity: 0.08;
   }
   
-  .stars-subtle .star-mini {
+  .star-mini {
     width: 1px;
     height: 1px;
   }
+  
+  .subtle-grid {
+    background-size: 30px 30px;
+    opacity: 0.8; /* Slightly reduced */
+  }
 }
 
+/* Small mobile optimizations */
 @media (max-width: 480px) {
   .code-float,
   .bracket-float {
@@ -222,7 +260,65 @@
     padding: 3px 6px;
   }
   
-  .subtle-grid {
-    background-size: 30px 30px; /* Smaller grid on very small screens */
+  .mouse-glow {
+    width: 150px;
+    height: 150px;
+    filter: blur(15px);
+  }
+  
+  /* Disable backdrop-filter on very small devices */
+  .terminal-mini {
+    backdrop-filter: none;
+    background: rgba(20, 20, 30, 0.6);
+  }
+}
+
+/* Performance optimizations for high-end devices */
+@media (min-width: 1200px) {
+  .code-float,
+  .bracket-float {
+    filter: blur(0.3px); /* Slightly more blur on large screens */
+  }
+  
+  .mouse-glow {
+    filter: blur(40px);
+  }
+}
+
+/* Dark mode optimizations */
+@media (prefers-color-scheme: dark) {
+  .cartoon-background:not(.light) .terminal-mini {
+    border-color: rgba(79, 70, 229, 0.15);
+  }
+}
+
+/* Print styles - disable all effects */
+@media print {
+  .cartoon-background {
+    display: none;
+  }
+}
+
+/* Hardware acceleration helper */
+.gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  will-change: transform;
+}
+
+/* Reduce paint areas */
+.code-float,
+.bracket-float,
+.shape-float {
+  contain: layout style;
+}
+
+/* Optimize font rendering */
+@supports (font-variation-settings: normal) {
+  .code-float,
+  .bracket-float,
+  .terminal-mini {
+    font-variation-settings: 'wght' 500;
   }
 }
