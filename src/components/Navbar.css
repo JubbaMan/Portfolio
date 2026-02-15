@@ -1,10 +1,10 @@
 /* ===== Navbar Styles ===== */
 nav.navbar {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 
-  padding: 0 20px;
+  padding: 0 45px;
   height: 70px;
 
   background: rgba(20, 20, 30, 0.55);
@@ -18,7 +18,7 @@ nav.navbar {
   left: 50%;
   transform: translateX(-50%);
 
-  width: clamp(280px, 60vw, 900px);
+  width: clamp(280px, 50vw, 900px);
   /* 🔥 Responsive width */
   border-radius: 999px;
 

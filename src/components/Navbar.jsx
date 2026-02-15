@@ -16,7 +16,7 @@ const Navbar = () => {
   // Detect screen size
   useEffect(() => {
     const handleResize = () => {
-      setIsDesktop(window.innerWidth >= 770);
+      setIsDesktop(window.innerWidth >= 1000);
     };
 
     window.addEventListener("resize", handleResize);
@@ -58,7 +58,7 @@ const Navbar = () => {
         onClick={() => scrollToSection("home")}
       >
         <span className="Logo">
-          {!isDesktop || dockMode ? "J" : "Jobayer"}
+          {!isDesktop || dockMode ? "J." : "Jobayer."}
         </span>
       </div>
 
