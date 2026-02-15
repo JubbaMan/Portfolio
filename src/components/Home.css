@@ -151,7 +151,7 @@ body::before {
 .bg {
   position: fixed;
   inset: 0;
-  background-image: url("./bg.png");
+  background-image: url("public/bg.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
