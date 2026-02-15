@@ -1,7 +1,10 @@
 import React from "react";
+import { useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import CartoonBackground from "./CartoonBackground";
 import "./Home.css";
+import LocomotiveScroll from 'locomotive-scroll';
+import "locomotive-scroll/dist/locomotive-scroll.css";
 
 /* ===== PROJECT CARD COMPONENT ===== */
 const ProjectCard = ({ project, index }) => {
@@ -67,8 +70,29 @@ const ProjectCard = ({ project, index }) => {
   );
 };
 
+
 /* ===== HOME COMPONENT ===== */
 const Home = () => {
+  const scrollRef = React.createRef();
+
+  useEffect(() => {
+    if (!scrollRef.current) return;
+
+    const scroll = new LocomotiveScroll({
+      el: scrollRef.current,
+      smooth: true
+    });
+
+    // update scroll when images load
+    const images = scrollRef.current.querySelectorAll("img");
+    images.forEach((img) => {
+      img.addEventListener("load", () => scroll.update());
+    });
+
+    // cleanup
+    return () => scroll.destroy();
+  }, []);
+
   const projects = [
     {
       title: "Personal Portfolio",
@@ -160,9 +184,144 @@ const Home = () => {
 
   return (
     <>
-      <CartoonBackground />
+      <div className="scroll" ref={scrollRef}  data-scroll-container>
+        <div className="bg" />
+        <div className="parallax-wrapper">
+  {/* Moon - gentle floating animation + subtle parallax throughout */}
+  <img
+    src="/moon.png"
+    className="moon float-animation"
+    data-scroll
+    data-scroll-speed="-0.2"
+    data-scroll-direction="vertical"
+    alt="moon"
+  />
+
+  {/* Planets - different floating animations + parallax throughout */}
+  <img
+    src="/planet1.png"
+    className="planet planet1 float-slow"
+    data-scroll
+    data-scroll-speed="0.25"
+    data-scroll-direction="vertical"
+    alt="planet"
+  />
+
+  <img
+    src="/planet2.png"
+    className="planet planet2 float-medium"
+    data-scroll
+    data-scroll-speed="-0.2"
+    data-scroll-direction="vertical"
+    alt="planet"
+  />
+
+  <img
+    src="/planet3.png"
+    className="planet planet3 float-fast"
+    data-scroll
+    data-scroll-speed="0.15"
+    data-scroll-direction="vertical"
+    alt="planet"
+  />
+
+  {/* Clouds - drifting animations + horizontal parallax throughout */}
+  <img
+    src="/cloud.png"
+    className="cloud cloud1 drift-left"
+    data-scroll
+    data-scroll-speed="0.2"
+    data-scroll-direction="horizontal"
+    alt="cloud"
+  />
+
+  <img
+    src="/cloud.png"
+    className="cloud cloud2 drift-right"
+    data-scroll
+    data-scroll-speed="-0.25"
+    data-scroll-direction="horizontal"
+    alt="cloud"
+  />
+  
+  <img
+    src="/cloud.png"
+    className="cloud cloud3 drift-left-slow"
+    data-scroll
+    data-scroll-speed="0.15"
+    data-scroll-direction="horizontal"
+    alt="cloud"
+  />
+  
+  <img
+    src="/cloud.png"
+    className="cloud cloud4 drift-right-medium"
+    data-scroll
+    data-scroll-speed="-0.2"
+    data-scroll-direction="horizontal"
+    alt="cloud"
+  />
+  
+  <img
+    src="/cloud.png"
+    className="cloud cloud5 drift-left-fast"
+    data-scroll
+    data-scroll-speed="0.3"
+    data-scroll-direction="horizontal"
+    alt="cloud"
+  />
+  
+  <img
+    src="/cloud.png"
+    className="cloud cloud6 drift-right-slow"
+    data-scroll
+    data-scroll-speed="-0.15"
+    data-scroll-direction="horizontal"
+    alt="cloud"
+  />
+
+  {/* Additional planets for lower sections */}
+  <img
+    src="/planet3.png"
+    className="planet planet4 float-very-slow"
+    data-scroll
+    data-scroll-speed="0.35"
+    data-scroll-direction="vertical"
+    alt="planet"
+  />
+
+  <img
+    src="/planet2.png"
+    className="planet planet5 float-medium"
+    data-scroll
+    data-scroll-speed="-0.1"
+    data-scroll-direction="vertical"
+    alt="planet"
+  />
+
+  {/* Additional clouds for lower sections */}
+  <img
+    src="/cloud.png"
+    className="cloud cloud7 drift-right"
+    data-scroll
+    data-scroll-speed="-0.2"
+    data-scroll-direction="horizontal"
+    alt="cloud"
+  />
+
+  <img
+    src="/cloud.png"
+    className="cloud cloud8 drift-left"
+    data-scroll
+    data-scroll-speed="0.25"
+    data-scroll-direction="horizontal"
+    alt="cloud"
+  />
+</div>
+
       {/* ===== HERO SECTION ===== */}
-      <section className="hero" id="home">
+
+      <section className="hero" id="home" >
         <motion.div
           className="hero-container"
           initial={{ opacity: 0, y: 50 }}
@@ -171,7 +330,7 @@ const Home = () => {
         >
           <motion.div
             className="hero-text"
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
           >
@@ -199,6 +358,7 @@ const Home = () => {
       <motion.section
         className="about"
         id="about"
+        
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
@@ -270,6 +430,7 @@ const Home = () => {
       <motion.section
         className="skills"
         id="skills"
+        
         initial={{ opacity: 0, y: 60 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
@@ -328,6 +489,7 @@ const Home = () => {
       <motion.section
         className="contact"
         id="contact"
+        
         initial={{ opacity: 0, y: 60 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
@@ -359,6 +521,7 @@ const Home = () => {
           © {new Date().getFullYear()} Md. Jobayer Patwary — All Rights Reserved.
         </p>
       </footer>
+    </div >
     </>
   );
 };
