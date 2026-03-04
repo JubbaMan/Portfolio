@@ -99,7 +99,34 @@ html.has-scroll-smooth {
 .has-scroll-dragging .c-scrollbar {
   opacity: 1;
 }
+.music-wrapper {
+  position: fixed;
+  z-index: 9999;
+  right: 30px;
+}
 
+/* Top right, vertically centered with navbar */
+
+.music-wrapper.bottom {
+  bottom: 30px;
+  right: 30px;
+  position: fixed;
+  z-index: 9999;
+}
+
+/* Mobile adjustment */
+@media (max-width: 768px) {
+  .music-wrapper.bottom {
+    right: 15px;
+    top: 20px;
+  }
+}
+/* Optional: slightly lower if navbar is short */
+@media (max-width: 768px) {
+  .music-wrapper.top {
+    right: 15px;
+  }
+}
 /* ===== BACKGROUND ENHANCEMENTS ===== */
 .bg {
   position: fixed;

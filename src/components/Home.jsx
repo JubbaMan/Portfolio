@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import "./Home.css";
 import LocomotiveScroll from 'locomotive-scroll';
 import "locomotive-scroll/dist/locomotive-scroll.css";
+import Music from "./Music";
 
 /* ===== PROJECT CARD COMPONENT ===== */
 const ProjectCard = ({ project, index }) => {
@@ -111,7 +112,7 @@ const Home = () => {
         scroll.update();
       }
     };
-    
+
     window.addEventListener('resize', handleResize);
 
     return () => {
@@ -217,9 +218,10 @@ const Home = () => {
         {/* Background with dynamic gradient */}
         <div className="bg" />
         <div className="gradient-overlay" />
-        
-        {/* Parallax wrapper */}
-      
+
+        <div className="music-wrapper  bottom">
+          <Music />
+        </div>
 
         {/* ===== HERO SECTION ===== */}
         <section className="hero" id="home" data-scroll-section>
@@ -235,9 +237,9 @@ const Home = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, delay: 0.2 }}
             >
-              <motion.h1 
+              <motion.h1
                 className="name"
-                animate={{ 
+                animate={{
                   textShadow: [
                     "0 0 20px rgba(79,70,229,0.3)",
                     "0 0 40px rgba(79,70,229,0.6)",
@@ -332,7 +334,7 @@ const Home = () => {
                 "Python",
                 "C/C++",
               ].map((tech, index) => (
-                <motion.span 
+                <motion.span
                   key={index}
                   whileHover={{ scale: 1.1, y: -3 }}
                   transition={{ type: "spring", stiffness: 400 }}
@@ -376,7 +378,7 @@ const Home = () => {
               <motion.div
                 className="cursor-target skill-card"
                 key={index}
-                whileHover={{ 
+                whileHover={{
                   scale: 1.05,
                   rotateY: 5,
                   boxShadow: "0 20px 40px rgba(79,70,229,0.3)"
