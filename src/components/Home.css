@@ -131,10 +131,10 @@ html.has-scroll-smooth {
 .bg {
   position: fixed;
   inset: 0;
-  background: url("public/bg2.png") center/cover no-repeat;
+  background: url('/bg2.png') center/cover no-repeat;
   z-index: -2;
   opacity: 0.6;
-  filter: brightness(0.8) contrast(1.2);
+  filter: brightness(0.8) contrast(1.2) opacity(0.8);
 }
 
 .gradient-overlay {
